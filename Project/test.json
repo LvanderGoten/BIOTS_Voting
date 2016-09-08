@@ -1,9 +1,14 @@
 {
   "dataPoints": [
-        {  "y": 83.24, "legendText": "Google", "label": "Google" },
-        {  "y": 6.16, "legendText": "Yahoo!", "label": "Yahoo!" },
-        {  "y": 6.67, "legendText": "Bing", "label": "Bing" },
-        {  "y": 1.67, "legendText": "Baidu" , "label": "Baidu"},       
-        {  "y": 0.98, "legendText": "Others" , "label": "Others"}
+        {  "y": 25.0, "legendText": "Reno Lepe", "label": "Reno Lepe" },
+        {  "y": 15.0, "legendText": "Guillelmina Vidrio", "label": "Guillelmina Vidrio" },
+        {  "y": 10.0, "legendText": "Ramone Paz", "label": "Ramone Paz" },
+        {  "y": 10.0, "legendText": "Lobo Gamero" , "label": "Lobo Gamero"},       
+        {  "y": 10.0, "legendText": "Andres Alvarez" , "label": "Andres Alvarez"},
+        {  "y": 5.0, "legendText": "Pedro Estrada" , "label": "Pedro Estrada"},    
+        {  "y": 5.0, "legendText": "Nevada Silvera" , "label": "Nevada Silvera"},    
+        {  "y": 15.0, "legendText": "Abran Huerta" , "label": "Abran Huerta"},    
+        {  "y": 2.5, "legendText": "Lucero Cotto" , "label": "Lucero Cotto"},    
+        {  "y": 2.5, "legendText": "Iliana Jairo Enriquez" , "label": "Iliana Jairo Enriquez"} 
   ]
 }

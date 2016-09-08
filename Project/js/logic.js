@@ -34,7 +34,7 @@ $(document).ready(function() {
                 dataType: 'json',
                 async: true,
                 success: function(msg) {
-                    alert(msg);
+                    $(location).attr('href', 'vis.html')
                 }
             });
             

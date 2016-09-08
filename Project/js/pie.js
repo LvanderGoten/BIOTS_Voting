@@ -35,8 +35,7 @@ $(document).ready(function () {
             url: 'test.json',
             dataType: 'json',
             success: function(json) {
-            l = json;
-            chart.options.data[0].dataPoints = l.dataPoints;
+            chart.options.data[0].dataPoints = json.dataPoints;
                 
             chart.render();
                 

@@ -20,18 +20,6 @@ contract votingSystem {
         // Events that will be fired on changes.
         event latestVote(address voter, address candidate);
         event votingEnded(address winner);
-
-        /// Text to display during transaction message
-        function SimpleAuction(address[] _candidates) {                           //should be of type list
-        
-                for (uint i=0; i<_candidates.length; i += 1) {
-                        candidates.push(_candidates[i]);
-                }
-                log0("hey");
-                //input
-                //["0xdedb49385ad5b94a16f236a6890cf9e0b1e30392","0xdedb49385ad5b94a16f236a6890cf9e0b1e30393"]
-                
-        }
         
         function AddCandidate(address _candidate) {
                 candidates.push(_candidate);
@@ -39,9 +27,10 @@ contract votingSystem {
         }
 
         function vote(address _candidate) {
+                
                 if (!includes(candidates, _candidate) ) {
-                        log0('Candidate does not exist');
-                        return;    
+                        //log0('Candidate does not exist');
+                        AddCandidate(_candidate);
                 }
                 if (voted[msg.sender]) {
                         log0('Voter changed vote');
@@ -70,20 +59,70 @@ contract votingSystem {
                 log0(bytes32(num_votes[_candidate]));
         }
         
-        function get_winner() {
-                current_winner = candidates[0];             //Initial values
-                for(uint i = 1; i<candidates.length; i+=1) {
-                        if (num_votes[current_winner] <= num_votes[candidates[i]]) {
-                                current_winner = candidates[i];
-                                //votes_of_current_winner = num_votes[cur_winner];
-                        }
-                }
+        function get_candidate_num() returns(uint out) {
+                return candidates.length;
         }
+        
+        function get_candidate(uint i) constant returns(bytes out) {
+                return toBytes(candidates[i]);
+        }
+        
+        /*
+        function get_candidates() constant returns(bytes[] out) {
+                bytes[] _cand;
+                for (uint i = 0; i < candidates.length; i++)
+                        _cand.push(toBytes(candidates[i]));
+                return _cand;
+        }
+        */
+        
+        function get_votes(uint i) constant returns(uint votes) {
+                return num_votes[candidates[i]];
+        }
+        
+        function toBytes(address x) returns (bytes b) {
+                b = new bytes(20);
+                for (uint i = 0; i < 20; i++)
+                        b[i] = byte(uint8(uint(x) / (2**(8*(19 - i)))));
+                        
+                return b;
+        }
+        
+        /*
+        function get_winner() returns(address[] pull){
+                //return num_votes;
+                //current_winner = candidates[0];             //Initial values
+                //for(uint i = 1; i<candidates.length; i+=1) {
+                //        if (num_votes[current_winner] <= num_votes[candidates[i]]) {
+                //                current_winner = candidates[i];
+                //                //votes_of_current_winner = num_votes[cur_winner];
+                //        }
+                //}
+                //address[] out;
+                log0("hey!");
+                //bytes32[] out;
+                //address[] out_1_addresses;
+                //uint[] out_2_votes;
+                for(uint i = 0; i < candidates.length; i += 1) {
+                        log0(bytes32(candidates[i]));
+                        log0(bytes32(num_votes[candidates[i]]));
+                        pull.push(candidates[i]);
+                        pull.push(num_votes[candidates[i]]);
+                }
+                return pull;
+                
+                //log0(bytes32(out));
+                //pull = out;
+                //return pull; 
+        }
+        */
+        
+        
         
         /// End the auction and send the highest bid
         /// to the beneficiary.
         function votingEnds() {
-                get_winner();
+                //get_winner();
                 votingEnded(current_winner);
                 bool success = true;
                 ended = true;

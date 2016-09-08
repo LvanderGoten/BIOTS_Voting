@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 
+var dictionary = {};
+
 var Web3 = require('web3');
 var path = require('path');
 var sandboxId = '3a74993ab5';
@@ -16,6 +18,8 @@ var contractInstance = contractObject.at(contractAddress);
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/Project/index.html'));
+    console.log( web3.toUtf8("0x48656c6c6f20576f726c64210000000000000000000000000000000000000000") );
+    
 })
 
 app.get('/vis', function(req, res) {
@@ -26,20 +30,45 @@ var myParser = require("body-parser");
 app.use(myParser.json({extended : true}));
   app.post("/accept_vote", function(request, response) {
       //console.log(request.body); //This prints the JSON document received (if it is a JSON document)
-      console.log(request.body.Vote);
-      contractInstance.vote(request.body.Vote);
-      response.send("Message received.");
-      response.send('set greeting!');
+      console.log(request.body);
+      console.log(request.body.VoteID);
+      contractInstance.vote(request.body.VoteID);
+      console.log("Success");
+      //response.send("Message received.");
+      //response.send('set greeting!');
       response.end();
+});
+app.get('/get_loser', function(request, response) {
+    contractInstance.get_candidate_num();
+    response.end();
 });
 
 //Implement constantly catching the array from the blockchain thing - the variable mapping(address=>uint) num_votes
+app.get('/get_winner', function(request, response) {
 
+    //num_candidates = web3.toUtf8( contractInstance.get_candidate_num() );
+
+    
+    /*
+    candidates = contractInstance.get_candidates();
+    
+    poll = {}; 
+    
+    for (var i = 0; i < candidates.length; i += 1) {
+        console.log("HEY");
+        console.log(i);
+        console.log(candidates[i]);
+        x = contractInstance.get_votes(candidates[i]);
+        console.log(x);
+        poll[candidates[i]] = x;    
+    }
+*/
+});
 
 var server = app.listen(8080, function () {
   console.log("express server running");
-  console.log('default account: ' + web3.eth.accounts[0])
-})
+  console.log('default account: ' + web3.eth.accounts[0]);
+});
 
 app.use(express.static(path.join(__dirname, 'Project')));
 

@@ -1,0 +1,36 @@
+$(document).ready(function () {
+
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		title:{
+			text: "Desktop Search Engine Market Share, Dec-2012"
+		},
+                animationEnabled: true,
+		legend:{
+			verticalAlign: "center",
+			horizontalAlign: "left",
+			fontSize: 20,
+			fontFamily: "Helvetica"        
+		},
+		theme: "theme2",
+		data: [
+		{        
+			type: "pie",       
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabel: "{label} {y}%",
+			startAngle:-20,      
+			showInLegend: true,
+			toolTipContent:"{legendText} {y}%",
+			dataPoints: [
+				{  y: 83.24, legendText:"Google", label: "Google" },
+				{  y: 8.16, legendText:"Yahoo!", label: "Yahoo!" },
+				{  y: 4.67, legendText:"Bing", label: "Bing" },
+				{  y: 1.67, legendText:"Baidu" , label: "Baidu"},       
+				{  y: 0.98, legendText:"Others" , label: "Others"}
+			]
+		}
+		]
+	});
+	chart.render();
+});

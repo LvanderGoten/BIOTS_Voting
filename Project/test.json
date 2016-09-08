@@ -1,7 +1,9 @@
-[
-				{  "y": 83.24, "legendText": "Google", "label": "Google" },
-				{  "y": 8.16, "legendText": "Yahoo!", "label": "Yahoo!" },
-				{  "y": 4.67, "legendText": "Bing", "label": "Bing" },
-				{  "y": 1.67, "legendText": "Baidu" , "label": "Baidu"},       
-				{  "y": 0.98, "legendText": "Others" , "label": "Others"}
-]
+{
+  "dataPoints": [
+        {  "y": 83.24, "legendText": "Google", "label": "Google" },
+        {  "y": 6.16, "legendText": "Yahoo!", "label": "Yahoo!" },
+        {  "y": 6.67, "legendText": "Bing", "label": "Bing" },
+        {  "y": 1.67, "legendText": "Baidu" , "label": "Baidu"},       
+        {  "y": 0.98, "legendText": "Others" , "label": "Others"}
+  ]
+}

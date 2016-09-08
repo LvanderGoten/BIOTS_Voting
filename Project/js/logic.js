@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    var vote = "";
+    var vote = -1;
 
     // Vote
     $('span').click(function () {
-        vote = $(this).attr('id');
+        vote = parseInt($(this).attr('id'));
         
         $('span').css({"color": "darkslategray", "font-weight": "normal"});
         
@@ -14,10 +14,17 @@ $(document).ready(function() {
     
     // Submit 
     $('#submit').click(function() {
-        if (vote != "") {
+        if (vote != -1) {
             // Submit decision over AJAX
-            console.log('hey');
-            var arr = JSON.stringify({Vote: vote, Token: Math.random().toString(36).slice(2)});
+            var seed = "0x";
+            var i;
+            for (i = 0; i < 39; i++) {
+                seed = seed + "0";
+            }
+            
+            seed = seed + vote.toString();
+            
+            var arr = JSON.stringify({Vote: seed, Token: Math.random().toString(36).slice(2)});
             console.log(arr);
             $.ajax({
                 url: '/accept_vote',

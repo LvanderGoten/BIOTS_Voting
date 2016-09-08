@@ -24,7 +24,7 @@ $(document).ready(function() {
             
             seed = seed + vote.toString();
             
-            var arr = JSON.stringify({Vote: seed, Token: Math.random().toString(36).slice(2)});
+            var arr = JSON.stringify({VoteID: seed, VoteName: $('#' + vote.toString()).text(), Token: Math.random().toString(36).slice(2)});
             console.log(arr);
             $.ajax({
                 url: '/accept_vote',

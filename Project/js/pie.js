@@ -1,48 +1,48 @@
 var l;
+var chart;
 $(document).ready(function () {
-
-//	var chart = new CanvasJS.Chart("chartContainer",
-//	{
-//		title:{
-//			text: "Desktop Search Engine Market Share, Dec-2012"
-//		},
-//                animationEnabled: true,
-//		legend:{
-//			verticalAlign: "center",
-//			horizontalAlign: "left",
-//			fontSize: 20,
-//			fontFamily: "Helvetica"        
-//		},
-//		theme: "theme2",
-//		data: [
-//		{        
-//			type: "pie",       
-//			indexLabelFontFamily: "Garamond",       
-//			indexLabelFontSize: 20,
-//			indexLabel: "{label} {y}%",
-//			startAngle:-20,      
-//			showInLegend: true,
-//			toolTipContent:"{legendText} {y}%",
-//			dataPoints: dPoints
-//		}
-//		]
-//	});
     
     window.setInterval(function () {
-        
-        // Retrieve new polls
-        $.ajax({
-            url: "test.json",
-            dataType: "jsonp",
-            success: function(data) {
-
-                $.each(data, function(index) {
-                   console.log(data[index].y);
-                });
-        }
+        chart = new CanvasJS.Chart("chartContainer",
+        {
+            title:{
+                text: ""
+            },
+            animationEnabled: true,
+            legend:{
+                verticalAlign: "center",
+                horizontalAlign: "left",
+                fontSize: 20,
+                fontFamily: "Helvetica"        
+            },
+            theme: "theme2",
+            data: [
+            {        
+                type: "pie",       
+                indexLabelFontFamily: "Garamond",       
+                indexLabelFontSize: 20,
+                indexLabel: "{label} {y}%",
+                startAngle:-20,      
+                showInLegend: true,
+                toolTipContent:"{legendText} {y}%",
+                dataPoints: []
+            }
+            ]
         });
         
-    }, 5000);
+        // Retrieve new polls
+         $.ajax({
+            url: 'test.json',
+            dataType: 'json',
+            success: function(json) {
+            chart.options.data[0].dataPoints = json.dataPoints;
+                
+            chart.render();
+                
+            }
+         });
+        
+    }, 10000);
     
     
 });

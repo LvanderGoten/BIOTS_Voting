@@ -59,7 +59,7 @@ contract votingSystem {
                 log0(bytes32(num_votes[_candidate]));
         }
         
-        function get_candidate_num() returns(uint out) {
+        function get_candidate_num() constant returns(uint256 out) {
                 return candidates.length;
         }
         

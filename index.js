@@ -5,7 +5,7 @@ var dictionary = {};
 
 var Web3 = require('web3');
 var path = require('path');
-var sandboxId = '3a74993ab5';
+var sandboxId = 'c8a6e5319c';
 var sandboxUrl = 'https://sirdavidal.by.ether.camp:8555/sandbox/' + sandboxId;    //https://sirdavidal.by.ether.camp:8555/sandbox/
 var web3 = new Web3(new Web3.providers.HttpProvider(sandboxUrl));
 var contractAddress = '0x052ecb441e56e28803008f70daa586959797f937';
@@ -18,7 +18,7 @@ var contractInstance = contractObject.at(contractAddress);
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/Project/index.html'));
-    console.log( web3.toUtf8("0x48656c6c6f20576f726c64210000000000000000000000000000000000000000") );
+    //console.log( web3.toUtf8("0x48656c6c6f20576f726c64210000000000000000000000000000000000000000") );
     
 })
 
@@ -32,14 +32,17 @@ app.use(myParser.json({extended : true}));
       //console.log(request.body); //This prints the JSON document received (if it is a JSON document)
       console.log(request.body);
       console.log(request.body.VoteID);
-      contractInstance.vote(request.body.VoteID);
+      console.log( contractInstance.vote(request.body.VoteID) );
       console.log("Success");
       //response.send("Message received.");
       //response.send('set greeting!');
       response.end();
 });
+
+//debugging the get_winner function (returning hex values instead of a simple number < 10)
 app.get('/get_loser', function(request, response) {
-    contractInstance.get_candidate_num();
+    x = contractInstance.get_candidate_num() ;
+    console.log(x);
     response.end();
 });
 
@@ -62,7 +65,7 @@ app.get('/get_winner', function(request, response) {
         console.log(x);
         poll[candidates[i]] = x;    
     }
-*/
+*/  response.end();
 });
 
 var server = app.listen(8080, function () {
